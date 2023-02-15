@@ -1,13 +1,14 @@
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, TouchableOpacity } from 'react-native'
 import { useCallback } from 'react';
 import React from 'react'
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useThemeMode } from '@rneui/themed';
-import { backgroundDark, backgroundLight, black, white } from '../../../components/constant';
+import { Ionicons } from '@expo/vector-icons';
+import { backgroundDark, backgroundLight, black, white, blue, lightBlue } from '../../../components/constant';
 SplashScreen.preventAutoHideAsync();
 const HeaderHome = () => {
-  const {mode} = useThemeMode();
+  const { mode } = useThemeMode();
   const [fontsLoaded] = useFonts({
     'Lobster': require("../../../../assets/fonts/Lobster-Regular.ttf")
   });
@@ -28,49 +29,39 @@ const HeaderHome = () => {
       paddingHorizontal: 20,
       alignItems: 'center',
       paddingTop: 30,
-      backgroundColor:mode=='dark'?backgroundDark:backgroundLight
+      backgroundColor: mode == 'dark' ? backgroundDark : backgroundLight
     }}
-    onLayout={onLayoutRootView}
+      onLayout={onLayoutRootView}
     >
       <View style={{
         flexDirection: 'row',
         justifyContent: "center",
-        alignItems: 'center'
+        alignItems: 'center',
       }}>
-        <Image 
-        source={require('../../../../assets/images/phone.png')}
-        style={{
-          width: 34,
-          height: 34,
-          marginRight: 24,
-          resizeMode: 'contain'
-        }} />
-        <Text style={{fontFamily:'Lobster',fontSize: 20, color:mode=='dark'?white:black }}>Book Library</Text>
+        <Image
+          source={require('../../../../assets/images/phone.png')}
+          style={{
+            width: 34,
+            height: 34,
+            marginRight: 24,
+            resizeMode: 'contain'
+          }} />
+        <Text style={{ fontFamily: 'Lobster', fontSize: 20, color: mode == 'dark' ? white : black }}>Book Library</Text>
       </View>
-      <View style={{flexDirection:"row"}}>
-        <Image
-        source={require('../../../../assets/images/search1.png')}
-        style={{
-          width:34,
-          height:34
-        }}
-        />
-        <Image
-        source={require('../../../../assets/images/clock1.png')}
-        style={{
-          width:34,
-          height:34
-        }}
-        />
-        <Image
-        source={require('../../../../assets/images/notifi.png')}
-        style={{
-          width:34,
-          height:34
-        }}
-        />
+      <View style={{ flexDirection: "row",justifyContent: 'center', alignItems: 'center'  }}>
+        <TouchableOpacity style={{marginHorizontal:5}}>
+          <Ionicons name="search-outline"
+            size={30} color={blue} />
+        </TouchableOpacity>
+        <TouchableOpacity style={{marginHorizontal:5}}>
+          <Ionicons name="alarm-outline" size={30} color={blue} />
+        </TouchableOpacity>
+        <TouchableOpacity style={{marginHorizontal:5}}>
+          <Ionicons name="notifications"
+            size={30}
+            color={blue} />
+        </TouchableOpacity>
       </View>
-
     </View>
   )
 }

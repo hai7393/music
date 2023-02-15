@@ -1,4 +1,4 @@
-import { View, Text, ScrollView } from 'react-native'
+import { View, ScrollView } from 'react-native'
 import React from 'react'
 import { Divider, List, Switch } from 'react-native-paper'
 import Header from '../../components/Header'
