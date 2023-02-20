@@ -13,11 +13,11 @@ const Suggested = () => {
   const { mode } = useThemeMode();
   const dispatch = useDispatch();
   const fetchMovie = async () => {
-    await dispatch(fetchListMovie());
+    await dispatch(fetchListMovie({page:page}));
 
   }
   useEffect(() => {
-    fetchMovie({ page });
+    fetchMovie();
   }, [])
   const loadMoreItems = async () => {
     dispatch(fetchListMovie({ page: page + 1 }));
