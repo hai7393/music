@@ -5,6 +5,7 @@ import SettingScreen from '../screens/Setting'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { useThemeMode } from '@rneui/themed';
 import { backgroundDark, backgroundLight } from '../components/constant'
+import Playlist from '../screens/Home/stacks/playlist'
 const Tab = createBottomTabNavigator()
 const MyApp = () => {
   const { mode } = useThemeMode();
@@ -48,7 +49,7 @@ const MyApp = () => {
         />
         <Tab.Screen 
         name="Playlist" 
-        component={HomeScreen} 
+        component={Playlist} 
         options={{
             tabBarLabel:"Playlist",
             tabBarIcon:({color})=>(
