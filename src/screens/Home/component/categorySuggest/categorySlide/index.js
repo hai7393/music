@@ -38,7 +38,6 @@ const CategorySlide = () => {
                     width: width / 3,
                     marginRight: 10,
                 }}
-                key={item.id}
             >
                 <View style={{
                     height: '70%',
@@ -46,18 +45,18 @@ const CategorySlide = () => {
                     borderRadius: 15,
                     
                 }}
-                key={item.id}>
-                    <Image
-                        source={{ uri: item.img }}
-                        style={{
-                            resizeMode: 'cover',
-                            width: '100%',
-                            height: '100%',
-                            borderRadius: 15
-                        }}
-                    />
+               >
+                <Image
+                    source={{ uri: item.img }}
+                    style={{
+                        resizeMode: 'cover',
+                        width: '100%',
+                        height: '100%',
+                        borderRadius: 15
+                    }}
+                />
                 </View>
-                <View key={item.id}>
+                <View>
                     <Txt h2 title={item.name} />
                     <Txt h2 title={item.author} />
                 </View>
@@ -80,16 +79,13 @@ const CategorySlide = () => {
                     <Txt h1 title="Recently Played" />
                     <Txt h1 title="See All" />
                 </View>
-                <View>
-                    <FlatList
-                        horizontal={true}
-                        showsHorizontalScrollIndicator={false}
-                        data={DATA}
-
-                        renderItem={({ item }) => <Item item={item} />}
-                        keyExtractor={item => item.id}
-                    />
-                </View>
+                <FlatList
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                    data={DATA}
+                    renderItem={Item}
+                    keyExtractor={({id}) => id.toString()}
+                 />
             </View>
             
     )

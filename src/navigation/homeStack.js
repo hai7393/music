@@ -18,7 +18,7 @@ const HomeStackScreen = () => {
                 //headerTintColor: COLORS.second
             }}
         >
-            <Stack.Screen name="HomeScreen" component={HomeScreen}
+            <Stack.Screen name="HomeStackScreen" component={HomeScreen}
             options={{
                 title:"home",
                 headerShown:false

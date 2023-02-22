@@ -9,40 +9,63 @@ import CategoryGrid from './categorySuggest/categorygrid';
 import { useNavigation } from '@react-navigation/native';
 const Suggested = () => {
   const list = useSelector(state => state.movie.listMovie.results);
-  console.log("list",list)
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [loadMore, setLoadMore] = useState(false)
   const { mode } = useThemeMode();
   const dispatch = useDispatch();
   const navigation = useNavigation();
-  const fetchMovie = async () => {
-    await dispatch(fetchListMovie());
-    
-  }
+
   useEffect(() => {
-    fetchMovie();
-  }, [])
+    setLoadMore(true)
+    setTimeout(() => {
+      dispatch(fetchListMovie({page : page})).then(res => {
+        if(res.payload.results) {
+          setData([...data , ...res.payload.results])
+          setLoading(false)
+          setLoadMore(false)
+        }else {
+          setLoading(true)
+        }
+      })
+    }, 2000);
+  }, [page])
+
 
   const loadMoreItems = async () => {
-      setLoading(true)
-      setData(prevData => [...prevData, ...list]);
+      if (!loadMore) {
+      // setPage(page + 1)
+    }
+    setLoadMore(true)
   };
+
+
+  
   const detailMovie = (id) => {
     navigation.navigate('DetailScreen', { id })
 }
   const renderFooter = () => {
-    if (loading) {
-      return <ActivityIndicator size="large" color="gray" />;
+    console.log(loadMore)
+    if (loadMore) {
+      return  (
+        <View style={{ paddingTop: 120 }}>
+          <ActivityIndicator size="large" color="gray" />
+      </View>
+      )
+    
     } 
     else {
       return (
-        <View style={{ padding: 10 }}>
-          <Button title="Load More" onPress={loadMoreItems} />
-        </View>
+        <View style={{ padding: 20 }}></View>
       );
     }
   };
+
+  if(loading) {
+    return null
+  }
+
 
   return (
     <View
