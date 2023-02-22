@@ -2,7 +2,7 @@ import { View, TouchableOpacity, Image, FlatList, Dimensions } from 'react-nativ
 import Txt from '../../../../../components/ui/Txt';
 import React from 'react';
 import Icon from '../../../../../components/icon';
-const CategoryGrid = ({ list, renderFooter, loadMoreItems,data }) => {
+const CategoryGrid = ({ list, renderFooter, loadMoreItems,data,detailMovie }) => {
     const ItemListAll = ({ item }) => {
         return (
             <TouchableOpacity
@@ -10,6 +10,8 @@ const CategoryGrid = ({ list, renderFooter, loadMoreItems,data }) => {
                     flex: 1,
                     margin: 8,
                 }}
+                key={item.id}
+                onPress={() => detailMovie(item.id)}
             >
                 <View style={{
                     flex: 1,
@@ -59,9 +61,9 @@ const CategoryGrid = ({ list, renderFooter, loadMoreItems,data }) => {
                 <Txt h1 title="See All" />
             </View>
             <FlatList
-                data={list}
+                data={data}
                 renderItem={({ item }) => <ItemListAll item={item} />}
-                keyExtractor={item => item.id}
+                keyExtractor={(item, index) => index.toString()}
                 numColumns={2}
                 ListFooterComponent={renderFooter}
                 onEndReached={loadMoreItems}

@@ -9,6 +9,26 @@ const MovieService = {
             }
         })
     },
+    getMovieDetail({
+        movieId,
+        ...restParam
+    } = {}) {
+        return api.call().get(`/movie/${movieId}`, {
+            params: {
+                ...restParam
+            }
+        })
+    },
+    getVideoDetail({
+        movieId,
+        ...restParam
+    } = {}) {
+        return api.call().get(`/movie/${movieId}/videos`, {
+            params: {
+                ...restParam
+            }
+        })
+    },
     
 }
 export default MovieService

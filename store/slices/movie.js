@@ -8,6 +8,20 @@ export const fetchListMovie = createAsyncThunk(
       return response.data
     }
   )
+  export const fetchMovieDetailById = createAsyncThunk(
+    'users/fetchMovieDetailById',
+    async (movieId, thunkAPI) => {
+      const response = await MovieService.getMovieDetail({ movieId: movieId.id })
+      return response.data
+    }
+  )
+  export const fetchVideoDetailById = createAsyncThunk(
+    'users/fetchVideoDetailById',
+    async (movieId, thunkAPI) => {
+      const response = await MovieService.getVideoDetail({ movieId: movieId.id })
+      return response.data
+    }
+  )
 
   const movieSlice = createSlice({
     name: 'movie',
@@ -15,12 +29,9 @@ export const fetchListMovie = createAsyncThunk(
       listMovie: [],
     },
     reducers: {
-      addItems: (state, action) => {
-        state.items = [...state.items, ...action.payload];
-      },
-      setHasMore: (state, action) => {
-        state.hasMore = action.payload;
-      },
+      incrementPage:(state)=>{
+        state.page+=1
+      }
     },
     extraReducers: (builder) => {
       // Add reducers for additional action types here, and handle loading state as needed
@@ -35,6 +46,6 @@ export const fetchListMovie = createAsyncThunk(
   })
   
   // Action creators are generated for each case reducer function
-  export const {addItems,setHasMore} = movieSlice.actions
+  export const {incrementPage} = movieSlice.actions
   
   export default movieSlice.reducer

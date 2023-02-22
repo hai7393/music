@@ -38,12 +38,15 @@ const CategorySlide = () => {
                     width: width / 3,
                     marginRight: 10,
                 }}
+                key={item.id}
             >
                 <View style={{
                     height: '70%',
                     marginBottom: 10,
                     borderRadius: 15,
-                }}>
+                    
+                }}
+                key={item.id}>
                     <Image
                         source={{ uri: item.img }}
                         style={{
@@ -54,7 +57,7 @@ const CategorySlide = () => {
                         }}
                     />
                 </View>
-                <View>
+                <View key={item.id}>
                     <Txt h2 title={item.name} />
                     <Txt h2 title={item.author} />
                 </View>

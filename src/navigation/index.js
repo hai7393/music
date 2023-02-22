@@ -2,6 +2,8 @@ import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import HomeScreen from '../screens/Home/stacks'
 import SettingScreen from '../screens/Setting'
+import FavoriteStackScreen from './favoriteStack'
+import HomeStackScreen from './homeStack'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { useThemeMode } from '@rneui/themed';
 import { backgroundDark, backgroundLight } from '../components/constant'
@@ -28,7 +30,7 @@ const MyApp = () => {
       >
         <Tab.Screen 
         name="HomeScreen" 
-        component={HomeScreen} 
+        component={HomeStackScreen} 
         options={{
             tabBarLabel:"Home",
             tabBarIcon:({color})=>(
@@ -39,7 +41,7 @@ const MyApp = () => {
         />
         <Tab.Screen 
         name="Favorites" 
-        component={HomeScreen} 
+        component={FavoriteStackScreen} 
         options={{
             tabBarLabel:"Favorites",
             tabBarIcon:({color})=>(
